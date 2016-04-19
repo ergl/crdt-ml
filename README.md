@@ -59,7 +59,12 @@ query a
 Using an _USet_:
 
 ```ocaml
-open USet
+module StrSet = USet.Make (struct
+	type t = string
+	let compare = compare
+end)
+
+open StrSet
 
 let s1 = make () and
     s2 = make ()
@@ -85,8 +90,6 @@ value s1
 value s2
 - : bytes list = ["I"; "Love"; "Pancakes"]
 ```
-
-
 
 ## Documentation
 
@@ -129,30 +132,46 @@ val merge : t -> t -> unit
 
 ### GRSet
 
-GRSet is __not__ polymorphic, and only accepts strings (for now).
-
 
 ```ocaml
-type t
-type elt = string
-val make : unit -> t
-val value : t -> elt list
-val add : t -> elt -> unit
-val merge : t -> t -> unit
+module type OrderedType = sig
+  type t
+  val compare : t -> t -> int
+end
+
+module type S = sig
+  type t
+  type elt
+  val make : unit -> t
+  val value : t -> elt list
+  val add : t -> elt -> unit
+  val merge : t -> t -> unit
+end
+
+module Make (O : OrderedType) : S with type elt = O.t
+
 ```
 
 ### USet
 
-USet is __not__ polymorphic, and only accepts strings (for now).
-
 ```ocaml
-type t
-type elt = string
-val make : unit -> t
-val value : t -> elt list
-val add : t -> elt -> unit
-val remove : t -> elt -> unit
-val merge : t -> t -> unit
+module type OrderedType = sig
+  type t
+  val compare : t -> t -> int
+end
+
+module type S = sig
+  type t
+  type elt
+  val make : unit -> t
+  val value : t -> elt list
+  val add : t -> elt -> unit
+  val remove : t -> elt -> unit
+  val merge : t -> t -> unit
+end
+
+module Make (O : OrderedType) : S with type elt = O.t
+
 ```
 
 ## License
