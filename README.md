@@ -13,7 +13,7 @@ Further Reading:
 
 Included data types are:
 
-- _Vector_ : An Integer Vector.
+- _IntVector_ : An Integer Vector.
 - _Counter_ : A grow-only counter.
 - _DCounter_ : A counter implementing both increment and decrement operations.
 - _GRSet_ : An grow-only set.
@@ -21,11 +21,16 @@ Included data types are:
 
 Please note that the current implementations are designed only for educational purposes. Don't use them for any serious work.
 
-## Building
+## Building and Installing
 
-```bash
-$ ./build.sh
-Usage: ./build.sh entrypoint executable-name
+```
+make && make install
+```
+
+To use this library, compile your files using `ocamlbuild`
+
+```
+ocamlbuild -use-ocamlfind -pkgs crdt <your-file>
 ```
 
 ## Usage
@@ -33,7 +38,7 @@ Usage: ./build.sh entrypoint executable-name
 For a simple increment / decrement counter:
 
 ```ocaml
-open Crdt.DCounter
+open DCounter
 
 let a = make () and
 	b = make ()
@@ -54,7 +59,7 @@ query a
 Using an _USet_:
 
 ```ocaml
-open Crdt.USet
+open USet
 
 let s1 = make () and
     s2 = make ()
@@ -90,7 +95,7 @@ value s2
 ```ocaml
 type t
 type state = int list
-val make : unit -> t
+val make_of_size : int -> t
 val make_with : state -> t
 val query : t -> state
 val update : int -> t -> unit
@@ -105,7 +110,7 @@ type state = int list
 val make : unit -> t
 val make_with : state -> t
 val query : t -> int
-val update : int -> t -> unit
+val incr : t -> unit
 val merge : t -> t -> unit
 ```
 
@@ -119,8 +124,6 @@ val make_with : state -> t
 val query : t -> int
 val incr : t -> unit
 val decr : t -> unit
-val incr_pos : int -> t -> unit
-val decr_pos : int -> t -> unit
 val merge : t -> t -> unit
 ```
 

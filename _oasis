@@ -1,0 +1,15 @@
+OASISFormat: 0.4
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+
+Name: crdt
+Version: 0.1.0
+Synopsis: CRDTs - OCaml style
+Authors: https://github.com/ergl/crdt-ml/
+Homepage: https://github.com/ergl/crdt-ml/
+License: GPL-3
+
+Library "crdt"
+    Path: src
+    Modules: Counter, DCounter, GRSet, USet, IntVector
+    InternalModules: IList
