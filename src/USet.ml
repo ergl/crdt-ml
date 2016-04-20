@@ -7,8 +7,9 @@ module type S = sig
   type t
   type elt
   val make : unit -> t
-  val value : t -> elt list
   val add : t -> elt -> unit
+  val value : t -> elt list
+  val lookup : t -> elt -> bool
   val remove : t -> elt -> unit
   val merge : t -> t -> unit
 end
@@ -32,6 +33,10 @@ module Make (O : OrderedType) = struct
   let remove s el =
     let (a, r) = !s in
     s := (a, ISet.add el r)
+
+  let lookup s el =
+    let (a, r) = !s in
+    ISet.mem el @@ ISet.diff a r
 
   let merge s s' =
     let (a, r) = !s and

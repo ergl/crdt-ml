@@ -16,7 +16,7 @@ Included data types are:
 - _IntVector_ : An Integer Vector.
 - _GCounter_ : A grow-only counter.
 - _PNCounter_ : A counter implementing both increment and decrement operations.
-- _GRSet_ : An grow-only set.
+- _GSet_ : A grow-only set.
 - _USet_ : A set supporting both add and remove operations.
 
 Please note that the current implementations are designed only for educational purposes. Don't use them for any serious work.
@@ -134,7 +134,7 @@ val decr : t -> unit
 val merge : t -> t -> unit
 ```
 
-### GRSet
+### GSet
 
 ```ocaml
 module type OrderedType = sig
@@ -146,13 +146,13 @@ module type S = sig
   type t
   type elt
   val make : unit -> t
-  val value : t -> elt list
   val add : t -> elt -> unit
+  val value : t -> elt list
+  val lookup : t -> elt -> bool
   val merge : t -> t -> unit
 end
 
 module Make (O : OrderedType) : S with type elt = O.t
-
 ```
 
 ### USet
@@ -167,8 +167,9 @@ module type S = sig
   type t
   type elt
   val make : unit -> t
-  val value : t -> elt list
   val add : t -> elt -> unit
+  val value : t -> elt list
+  val lookup : t -> elt -> bool
   val remove : t -> elt -> unit
   val merge : t -> t -> unit
 end
