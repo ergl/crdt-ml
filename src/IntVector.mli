@@ -1,11 +1,10 @@
 type t
-type state = int list
 
-val make_of_size : int -> t
-val make_with : state -> t
+val make : unit -> t
+val make_in_range : int -> t
 
-val query : t -> state
+val query : t -> int list
 
-val update : int -> t -> unit
+val update : t -> unit
 
 val merge : t -> t -> unit

@@ -1,28 +1,35 @@
-type state = int list
-type t = (state * state) ref
+type id = int
+type payload = (int list * int list)
+type t = (id * payload) ref
 
-let make () = let d = [0] in ref (d,d)
-let make_with state = ref (state, state)
+let make_in_range modulo =
+  let _ = Random.self_init () in
+  let numsite = Random.bits () mod modulo in
+  let payload = Array.(make (numsite + 1) 0 |> to_list) in
+  ref (numsite, (payload, payload))
+
+let make () = make_in_range 10
 
 let query v =
-  let (a, r) = !v in
+  let (a, r) = snd !v in
   IList.fold_left2 (fun acc a r -> acc + (a - r)) 0 a r
 
-let incr_pos pos v =
-  let (a, r) = !v in
-  v := (IList.incr_nth a pos, r)
+let incr v =
+  let (id, pl) = !v in
+  let (a, r) = pl in
+  v := (id, (IList.incr_nth a id, r))
 
-let decr_pos pos v =
-  let (a, r) = !v in
-  v := (a, IList.incr_nth r pos)
-
-let incr v = incr_pos 0 v
-let decr v = decr_pos 0 v
+let decr v =
+  let (id, pl) = !v in
+  let (a, r) = pl in
+  v := (id, (a, IList.incr_nth r id))
 
 let merge v v' =
-  let (a, r) = !v and
-      (a', r') = !v' and
+  let (id, pl) = !v and
+      (_, pl') = !v'
+  in
+  let (a, r) = pl and
+      (a', r') = pl' and
       max' a b = IList.map2 max a b
   in
-  v := (max' a a', max' r r')
-  
+  v := (id, (max' a a', max' r r'))

@@ -1,11 +1,21 @@
-type state = int list
-type t = state ref
+type id = int
+type t = (id * int list) ref
 
-let make_of_size size = ref Array.(make size 0 |> to_list)
-let make_with state = ref state
+let make_in_range modulo =
+  let _ = Random.self_init () in
+  let numsite = Random.bits () mod modulo in
+  ref (numsite, Array.(make (numsite + 1) 0 |> to_list))
 
-let query v = !v
+let make () = make_in_range 10
 
-let update pos t = t := IList.incr_nth !t pos
+let query v = (snd !v)
 
-let merge v v' = v := IList.map2 max !v !v'
+let update t =
+  let id = fst !t in
+  t := (id, IList.incr_nth (snd !t) id)
+
+let merge v v' =
+  let (id, state) = !v and
+      (_, state') = !v'
+  in
+  v := (id, IList.map2 max state state')

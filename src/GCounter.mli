@@ -1,9 +1,7 @@
 type t
-type state = int list
-
 
 val make : unit -> t
-val make_with : state -> t
+val make_in_range : int -> t
 
 val query : t -> int
 

@@ -97,11 +97,10 @@ value s2
 
 ```ocaml
 type t
-type state = int list
-val make_of_size : int -> t
-val make_with : state -> t
-val query : t -> state
-val update : int -> t -> unit
+val make : unit -> t
+val make_in_range : int -> t
+val query : t -> int list
+val update : t -> unit
 val merge : t -> t -> unit
 ```
 
@@ -109,9 +108,8 @@ val merge : t -> t -> unit
 
 ```ocaml
 type t
-type state = int list
 val make : unit -> t
-val make_with : state -> t
+val make_in_range : int -> t
 val query : t -> int
 val incr : t -> unit
 val merge : t -> t -> unit
@@ -121,9 +119,8 @@ val merge : t -> t -> unit
 
 ```ocaml
 type t
-type state = int list
 val make : unit -> t
-val make_with : state -> t
+val make_in_range : int -> t
 val query : t -> int
 val incr : t -> unit
 val decr : t -> unit
