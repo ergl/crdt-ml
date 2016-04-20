@@ -27,7 +27,14 @@ Please note that the current implementations are designed only for educational p
 make && make install
 ```
 
-To use this library, compile your files using `ocamlbuild`
+To try the library in a repl, open an ocaml toplevel and `require` it
+
+```
+# #use "topfind";;
+# #require "crdt";;
+```
+
+To link it, compile your files using `ocamlbuild`
 
 ```
 ocamlbuild -use-ocamlfind -pkgs crdt <your-file>
