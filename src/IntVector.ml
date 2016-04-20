@@ -1,5 +1,6 @@
 type id = int
-type t = (id * int list) ref
+type elt = int list
+type t = (id * elt) ref
 
 let make_in_range modulo =
   let _ = Random.self_init () in
@@ -10,7 +11,7 @@ let make () = make_in_range 11
 
 let query v = (snd !v)
 
-let update t =
+let incr t =
   let id = fst !t in
   t := (id, IList.incr_nth (snd !t) id)
 

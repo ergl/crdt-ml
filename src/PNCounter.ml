@@ -1,6 +1,6 @@
-type id = int
+type elt = int
 type payload = (int list * int list)
-type t = (id * payload) ref
+type t = (elt * payload) ref
 
 let make_in_range modulo =
   let _ = Random.self_init () in

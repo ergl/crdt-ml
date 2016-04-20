@@ -1,20 +1,6 @@
-module type OrderedType = sig
-  type t
-  val compare : t -> t -> int
-end
+open Crdt_types
 
-module type S = sig
-  type t
-  type elt
-  val make : unit -> t
-  val add : t -> elt -> unit
-  val value : t -> elt list
-  val lookup : t -> elt -> bool
-  val remove : t -> elt -> unit
-  val merge : t -> t -> unit
-end
-
-module Make (O : OrderedType) = struct
+module Make (O : Comparable) = struct
   module ISet = Set.Make (struct
     type t = (int * O.t)
     let compare (a, b) (c, d) = let tmp = compare a c in

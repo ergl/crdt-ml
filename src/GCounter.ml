@@ -1,5 +1,7 @@
-type id = int
-type t = (id * int list) ref
+open Crdt_types
+
+type elt = int
+type t = (elt * int list) ref
 
 let make_in_range modulo =
   let _ = Random.self_init () in

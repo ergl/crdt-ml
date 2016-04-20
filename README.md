@@ -105,10 +105,14 @@ value s2
 
 ```ocaml
 type t
+type elt = int list
+
 val make : unit -> t
 val make_in_range : int -> t
-val query : t -> int list
-val update : t -> unit
+
+val query : t -> elt
+val incr : t -> unit
+
 val merge : t -> t -> unit
 ```
 
@@ -116,10 +120,14 @@ val merge : t -> t -> unit
 
 ```ocaml
 type t
+type elt = int
+
 val make : unit -> t
 val make_in_range : int -> t
-val query : t -> int
+
+val query : t -> elt
 val incr : t -> unit
+
 val merge : t -> t -> unit
 ```
 
@@ -127,61 +135,72 @@ val merge : t -> t -> unit
 
 ```ocaml
 type t
+type elt = int
+
 val make : unit -> t
 val make_in_range : int -> t
-val query : t -> int
+
+val query : t -> elt
+
 val incr : t -> unit
 val decr : t -> unit
+
 val merge : t -> t -> unit
 ```
 
 ### GSet
 
 ```ocaml
-module type OrderedType = sig
+module type Comparable = sig
   type t
   val compare : t -> t -> int
 end
 
-module type S = sig
+module type GSet = sig
   type t
   type elt
+
   val make : unit -> t
-  val add : t -> elt -> unit
   val value : t -> elt list
+
+  val add : t -> elt -> unit
+
   val lookup : t -> elt -> bool
   val merge : t -> t -> unit
 end
 
-module Make (O : OrderedType) : S with type elt = O.t
+module Make (O : Comparable) : GSet with type elt = O.t
 ```
 
 ### USet
 
 ```ocaml
-module type OrderedType = sig
+module type Comparable = sig
   type t
   val compare : t -> t -> int
 end
 
-module type S = sig
+module type RSet = sig
   type t
   type elt
+  
   val make : unit -> t
-  val add : t -> elt -> unit
   val value : t -> elt list
-  val lookup : t -> elt -> bool
+
+  val add : t -> elt -> unit
   val remove : t -> elt -> unit
+
+  val lookup : t -> elt -> bool
   val merge : t -> t -> unit
 end
 
-module Make (O : OrderedType) : S with type elt = O.t
+module Make (O : Comparable) : RSet with type elt = O.t
 ```
 
 ### ORSet
 
 ```ocaml
-module type OrderedType = sig
+module type Comparable = sig
   type t
   val compare : t -> t -> int
 end
@@ -189,15 +208,18 @@ end
 module type S = sig
   type t
   type elt
+
   val make : unit -> t
-  val add : t -> elt -> unit
   val value : t -> elt list
-  val lookup : t -> elt -> bool
+
+  val add : t -> elt -> unit
   val remove : t -> elt -> unit
+
+  val lookup : t -> elt -> bool
   val merge : t -> t -> unit
 end
 
-module Make (O : OrderedType) : S with type elt = O.t
+module Make (O : Comparable) : RSet with type elt = O.t
 ```
 
 ## License

@@ -1,11 +1,3 @@
-type t
+open Crdt_types
 
-val make : unit -> t
-val make_in_range : int -> t
-
-val query : t -> int
-
-val incr : t -> unit
-val decr : t -> unit
-
-val merge : t -> t -> unit
+include DCounter with type elt = int
