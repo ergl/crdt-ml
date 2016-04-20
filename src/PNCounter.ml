@@ -4,11 +4,11 @@ type t = (id * payload) ref
 
 let make_in_range modulo =
   let _ = Random.self_init () in
-  let numsite = Random.bits () mod modulo in
+  let numsite = Random.int modulo in
   let payload = Array.(make (numsite + 1) 0 |> to_list) in
   ref (numsite, (payload, payload))
 
-let make () = make_in_range 10
+let make () = make_in_range 11
 
 let query v =
   let (a, r) = snd !v in
