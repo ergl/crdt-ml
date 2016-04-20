@@ -1,0 +1,11 @@
+# OASIS_START
+# DO NOT EDIT (digest: eb50cc79c9118bd3545c9d613a00be0e)
+src/util/IList
+src/mutable/M_GCounter
+src/mutable/M_GSet
+src/mutable/M_IntVector
+src/mutable/M_ORSet
+src/mutable/M_PNCounter
+src/mutable/M_USet
+src/mutable/Mutable_types
+# OASIS_STOP

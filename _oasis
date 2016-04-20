@@ -30,3 +30,15 @@ Library "crdt"
     Path: src
     Modules: Crdt
     BuildDepends: crdt_mutable, crdt_immutable
+
+
+AlphaFeatures: ocamlbuild_more_args
+Document "crdtml_api"
+    Type: ocamlbuild (0.4)
+    BuildTools: ocamldoc
+
+    Title: API reference for Crdt.Mutable and Crdt.Immutable
+    XOCamlbuildPath: .
+    XOCamlbuildExtraArgs:
+        "-docflags '-colorize-code -short-functors -charset utf-8'"
+    XOCamlbuildLibraries: crdt_util, crdt_mutable
