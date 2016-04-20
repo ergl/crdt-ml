@@ -3,19 +3,30 @@ BuildTools: ocamlbuild
 Plugins: META (0.4), DevFiles (0.4)
 
 Name: crdt
-Version: 0.8.0
+Version: 0.9.0
 Synopsis: CRDTs - OCaml style
 Authors: https://github.com/ergl/crdt-ml/
 Homepage: https://github.com/ergl/crdt-ml/
 License: GPL-3
 LicenseFile: LICENSE
 
+Library "crdt_util"
+    Path: src/util
+    Modules: IList
+
 Library "crdt_mutable"
     Path: src/mutable
-    Modules: M_GCounter, M_GSet, M_IntVector, M_ORSet, M_PNCounter, M_USet, Mutable_types
-    InternalModules: IList
+    Modules: M_GCounter, M_GSet, M_IntVector,
+             M_ORSet, M_PNCounter, M_USet, Mutable_types
+    BuildDepends: crdt_util
+
+Library "crdt_immutable"
+    Path: src/immutable
+    Modules: I_IntVector, I_GCounter, I_PNCounter,
+             I_GSet, I_ORSet, I_USet, Immutable_types
+    BuildDepends: crdt_util
 
 Library "crdt"
     Path: src
     Modules: Crdt
-    BuildDepends: crdt_mutable
+    BuildDepends: crdt_mutable, crdt_immutable
