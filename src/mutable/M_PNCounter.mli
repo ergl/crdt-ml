@@ -1,3 +1,3 @@
-open Crdt_types
+open Mutable_types
 
 include DCounter with type elt = int

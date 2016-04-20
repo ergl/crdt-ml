@@ -19,4 +19,4 @@ let merge v v' =
   let (id, state) = !v and
       (_, state') = !v'
   in
-  v := (id, IList.map2 max state state')
+  v := (id, IList.fill_map2 max state state')

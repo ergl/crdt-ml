@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 521ff93da9270214b9f4379c73d20548)
+# DO NOT EDIT (digest: 1b12c0c2c584d185b44631b794105043)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -14,6 +14,9 @@ true: annot, bin_annot
 ".git": not_hygienic
 "_darcs": -traverse
 "_darcs": not_hygienic
+# Library crdt_mutable
+"src/mutable/crdt_mutable.cmxs": use_crdt_mutable
 # Library crdt
 "src/crdt.cmxs": use_crdt
+<src/*.ml{,i,y}>: use_crdt_mutable
 # OASIS_STOP

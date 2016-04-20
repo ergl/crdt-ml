@@ -1,3 +1,3 @@
-open Crdt_types
+open Mutable_types
 
 include IVector with type elt = int

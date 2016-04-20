@@ -20,6 +20,8 @@ Included data types are:
 - _USet_ : A set supporting both add and remove operations. __Note__: Removed elements can never be added again. Use an `ORSet` if you want to be able to add removed elements in the future.
 - _ORSet_ : A set supporting both add and remove operations.
 
+Where not said otherwise, all implementations are mutable.
+
 Please note that the current implementations are designed only for educational purposes. Don't use them for any serious work.
 
 ## Building and Installing
@@ -41,12 +43,14 @@ To link it, compile your files using `ocamlbuild`
 ocamlbuild -use-ocamlfind -pkgs crdt <your-file>
 ```
 
+If you only want to use a certain part of the library, load and / or link `crdt_mutable` instead.
+
 ## Usage
 
 For a simple increment / decrement counter:
 
 ```ocaml
-open PNCounter
+open Crdt.Mutable.PNCounter
 
 let a = make () and
 	b = make ()
@@ -67,7 +71,7 @@ query a
 Using an _USet_:
 
 ```ocaml
-module StrSet = USet.Make (struct
+module StrSet = Crdt.Mutable.USet.Make (struct
 	type t = string
 	let compare = compare
 end)
@@ -101,7 +105,7 @@ value s2
 
 ## Documentation
 
-### IntVector
+### Mutable.IntVector
 
 ```ocaml
 type t
@@ -116,7 +120,7 @@ val incr : t -> unit
 val merge : t -> t -> unit
 ```
 
-### GCounter
+### Mutable.GCounter
 
 ```ocaml
 type t
@@ -131,7 +135,7 @@ val incr : t -> unit
 val merge : t -> t -> unit
 ```
 
-### PNCounter
+### Mutable.PNCounter
 
 ```ocaml
 type t
@@ -148,7 +152,7 @@ val decr : t -> unit
 val merge : t -> t -> unit
 ```
 
-### GSet
+### Mutable.GSet
 
 ```ocaml
 module type Comparable = sig
@@ -172,7 +176,7 @@ end
 module Make (O : Comparable) : GSet with type elt = O.t
 ```
 
-### USet
+### Mutable.USet
 
 ```ocaml
 module type Comparable = sig
@@ -197,7 +201,7 @@ end
 module Make (O : Comparable) : RSet with type elt = O.t
 ```
 
-### ORSet
+### Mutable.ORSet
 
 ```ocaml
 module type Comparable = sig
