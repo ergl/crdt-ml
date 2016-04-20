@@ -6,3 +6,12 @@ module Mutable = struct
   module ORSet = M_ORSet
   module USet = M_USet
 end
+
+module Immutable = struct
+  module IntVector = I_IntVector
+  module GCounter = I_GCounter
+  module PNCounter = I_PNCounter
+  module GSet = I_GSet
+  module ORSet = I_ORSet
+  module USet = I_USet
+end
