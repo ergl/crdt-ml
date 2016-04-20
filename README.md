@@ -17,7 +17,8 @@ Included data types are:
 - _GCounter_ : A grow-only counter.
 - _PNCounter_ : A counter implementing both increment and decrement operations.
 - _GSet_ : A grow-only set.
-- _USet_ : A set supporting both add and remove operations.
+- _USet_ : A set supporting both add and remove operations. __Note__: Removed elements can never be added again. Use an `ORSet` if you want to be able to add removed elements in the future.
+- _ORSet_ : A set supporting both add and remove operations.
 
 Please note that the current implementations are designed only for educational purposes. Don't use them for any serious work.
 
@@ -175,7 +176,28 @@ module type S = sig
 end
 
 module Make (O : OrderedType) : S with type elt = O.t
+```
 
+### ORSet
+
+```ocaml
+module type OrderedType = sig
+  type t
+  val compare : t -> t -> int
+end
+
+module type S = sig
+  type t
+  type elt
+  val make : unit -> t
+  val add : t -> elt -> unit
+  val value : t -> elt list
+  val lookup : t -> elt -> bool
+  val remove : t -> elt -> unit
+  val merge : t -> t -> unit
+end
+
+module Make (O : OrderedType) : S with type elt = O.t
 ```
 
 ## License

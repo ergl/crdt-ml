@@ -1,6 +1,6 @@
 # OASIS_START
-# DO NOT EDIT (digest: e413b0c50b9cbe195e7cb3a773408fa0)
-version = "0.4.0"
+# DO NOT EDIT (digest: 60307ac87828ccda16d1576c0f2192c2)
+version = "0.5.0"
 description = "CRDTs - OCaml style"
 archive(byte) = "crdt.cma"
 archive(byte, plugin) = "crdt.cma"
