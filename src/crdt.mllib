@@ -1,11 +1,4 @@
 # OASIS_START
-# DO NOT EDIT (digest: 845b4e7ca8d50ca52c29710b5dde7fdb)
-ORSet
-GCounter
-PNCounter
-GSet
-USet
-IntVector
-Crdt_types
-IList
+# DO NOT EDIT (digest: 3e46b9a9129401fb7f961edf9b028ae2)
+Crdt
 # OASIS_STOP

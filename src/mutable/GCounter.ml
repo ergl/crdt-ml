@@ -1,4 +1,4 @@
-open Crdt_types
+open Mutable_types
 
 type elt = int
 type t = (elt * int list) ref
@@ -20,4 +20,4 @@ let merge v v' =
   let (id, state) = !v and
       (_, state') = !v'
   in
-  v := (id, IList.map2 max state state')
+  v := (id, IList.fill_map2 max state state')

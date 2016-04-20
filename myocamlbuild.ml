@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 0c851f5284aee6deae53ec1de5cbc3c5) *)
+(* DO NOT EDIT (digest: 30b3c4e9b5f56a16af9670b1a59401e6) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -607,10 +607,11 @@ end
 open Ocamlbuild_plugin;;
 let package_default =
   {
-     MyOCamlbuildBase.lib_ocaml = [("crdt", ["src"], [])];
+     MyOCamlbuildBase.lib_ocaml =
+       [("crdt_mutable", ["src/mutable"], []); ("crdt", ["src"], [])];
      lib_c = [];
      flags = [];
-     includes = []
+     includes = [("src", ["src/mutable"])]
   }
   ;;
 
@@ -618,6 +619,6 @@ let conf = {MyOCamlbuildFindlib.no_automatic_syntax = false}
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
-# 622 "myocamlbuild.ml"
+# 623 "myocamlbuild.ml"
 (* OASIS_STOP *)
 Ocamlbuild_plugin.dispatch dispatch_default;;

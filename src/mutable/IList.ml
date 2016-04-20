@@ -1,4 +1,4 @@
-include List
+open List
 
 let incr_nth: int list -> int -> int list = fun l pos ->
   List.mapi
@@ -10,7 +10,7 @@ let rec fillz : int list -> int -> int list = fun l n ->
   if n = 0 then l
   else fillz (l @ [0]) (n - 1)
 
-let map2 f l l' =
+let fill_map2 f l l' =
   let la = List.length l and
       lb = List.length l' in
   let diff = abs @@ la - lb in
@@ -18,7 +18,7 @@ let map2 f l l' =
   else if la > lb then List.map2 f l @@ fillz l' diff
   else List.map2 f (fillz l diff) l'
 
-let fold_left2 f acc l l' =
+let fill_fold_left2 f acc l l' =
   let la = List.length l and
       lb = List.length l' in
   let diff = abs @@ la - lb in

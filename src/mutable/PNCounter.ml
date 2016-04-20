@@ -12,7 +12,7 @@ let make () = make_in_range 11
 
 let query v =
   let (a, r) = snd !v in
-  IList.fold_left2 (fun acc a r -> acc + (a - r)) 0 a r
+  IList.fill_fold_left2 (fun acc a r -> acc + (a - r)) 0 a r
 
 let incr v =
   let (id, pl) = !v in
@@ -30,6 +30,6 @@ let merge v v' =
   in
   let (a, r) = pl and
       (a', r') = pl' and
-      max' a b = IList.map2 max a b
+      max' a b = IList.fill_map2 max a b
   in
   v := (id, (max' a a', max' r r'))
