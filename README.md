@@ -14,8 +14,8 @@ Further Reading:
 Included data types are:
 
 - _IntVector_ : An Integer Vector.
-- _Counter_ : A grow-only counter.
-- _DCounter_ : A counter implementing both increment and decrement operations.
+- _GCounter_ : A grow-only counter.
+- _PNCounter_ : A counter implementing both increment and decrement operations.
 - _GRSet_ : An grow-only set.
 - _USet_ : A set supporting both add and remove operations.
 
@@ -38,7 +38,7 @@ ocamlbuild -use-ocamlfind -pkgs crdt <your-file>
 For a simple increment / decrement counter:
 
 ```ocaml
-open DCounter
+open PNCounter
 
 let a = make () and
 	b = make ()
@@ -105,7 +105,7 @@ val update : int -> t -> unit
 val merge : t -> t -> unit
 ```
 
-### Counter
+### GCounter
 
 ```ocaml
 type t
@@ -117,7 +117,7 @@ val incr : t -> unit
 val merge : t -> t -> unit
 ```
 
-### DCounter
+### PNCounter
 
 ```ocaml
 type t
@@ -131,7 +131,6 @@ val merge : t -> t -> unit
 ```
 
 ### GRSet
-
 
 ```ocaml
 module type OrderedType = sig

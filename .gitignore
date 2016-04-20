@@ -1,3 +1,5 @@
+oasis_clean.sh
+
 ### OCaml ###
 *.annot
 *.cmo
@@ -27,7 +29,8 @@ setup.log
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*

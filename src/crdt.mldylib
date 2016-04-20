@@ -1,7 +1,7 @@
 # OASIS_START
-# DO NOT EDIT (digest: 940e6fae41fbcf7a9dac5ea4a250c004)
-Counter
-DCounter
+# DO NOT EDIT (digest: a13aa4ccbcd09cb089f364f467bb00d5)
+GCounter
+PNCounter
 GRSet
 USet
 IntVector
