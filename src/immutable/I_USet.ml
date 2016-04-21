@@ -11,13 +11,13 @@ module Make (O : Comparable) = struct
   let value (a, r) = ISet.diff a r
     |> ISet.elements
 
-  let add (a, r) el = (ISet.add el a, r)
+  let add el (a, r) = (ISet.add el a, r)
 
-  let lookup (a, r) el = ISet.diff a r
+  let lookup el (a, r) = ISet.diff a r
     |> ISet.mem el
 
-  let remove s el =
-    if lookup s el then begin
+  let remove el s =
+    if lookup el s then begin
       let (a, r) = s in
       (a, ISet.add el r)
     end else s

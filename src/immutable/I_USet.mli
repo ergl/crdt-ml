@@ -8,9 +8,9 @@
     a regular [Map], one for adding ([add_s]) and the other for removing
     ([remove_s]).
 
-    [add t el] adds [el] to [add_s].
+    [add el t] adds [el] to [add_s].
 
-    [remove t el] adds [el] to [remove_s]
+    [remove el t] adds [el] to [remove_s]
 
     Both [lookup] and [value] operate on the set difference [add_s \ remove_s].
 
