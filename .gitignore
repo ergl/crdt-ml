@@ -1,4 +1,6 @@
 oasis_clean.sh
+qtest.targets.log
+test/
 
 ### OCaml ###
 *.annot

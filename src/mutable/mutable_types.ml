@@ -35,6 +35,8 @@ module type IVector = sig
   type elt
 
   (** [make_in_range n] creates a new [IVector] of size ranging from [0] to [n].
+      being [n] greater than 0 and smaller than 2^30.
+
       When merging two CRDTs of different sizes, the smaller one grows and pads
       the remaining space with zeros. *)
   val make_in_range : int -> t

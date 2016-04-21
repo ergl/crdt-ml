@@ -6,7 +6,7 @@
     update operations will only act on the position noted by [numsite].
 
     By default, {!val:Immutable_types.Mergeable.make} just calls
-    {!val:Immutable_types.IVector.make_in_range} [n] with [n = 10]. You can
+    {!val:Immutable_types.IVector.make_in_range} [n] with [n = 11]. You can
     override this by calling [make_in_range] directly. *)
 
 (** A Vector Clock is a {!module:Immutable_types.IVector} with type

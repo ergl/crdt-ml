@@ -5,7 +5,7 @@ Plugins: META (0.4), DevFiles (0.4)
 Name: crdt
 Version: 0.10.0
 Synopsis: CRDTs - OCaml style
-Authors: https://github.com/ergl/crdt-ml/
+Authors: https://github.com/ergl
 Homepage: https://github.com/ergl/crdt-ml/
 License: GPL-3
 LicenseFile: LICENSE
@@ -42,3 +42,13 @@ Document "crdtml_api"
     XOCamlbuildExtraArgs:
         "-docflags '-colorize-code -short-functors -charset utf-8'"
     XOCamlbuildLibraries: crdt, crdt_immutable, crdt_mutable
+
+Test "test_immutable"
+    TestTools: qtest
+    WorkingDirectory: test
+    Command:
+        qtest -o im_test.ml extract ../src/immutable/*.ml &&
+        ocamlbuild -cflags -warn-error,+26 \
+            -use-ocamlfind -package 'qcheck, oUnit, crdt_immutable' \
+            im_test.byte &&
+        ./im_test.byte
