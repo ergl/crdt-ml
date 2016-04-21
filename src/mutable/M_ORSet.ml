@@ -16,7 +16,7 @@ module Make (O : Comparable) = struct
 
   let make () = let d = ISet.empty in ref (d, d)
 
-  let add s el =
+  let add el s =
     let (a, r) = !s in
     s := (ISet.add (unique (), el) a, r)
 
@@ -26,13 +26,13 @@ module Make (O : Comparable) = struct
     |> List.map snd
     |> List.sort_uniq O.compare
 
-  let lookup s el =
+  let lookup el s =
     let (a, r) = !s in
     ISet.diff a r
     |> ISet.exists (fun (_, el') -> el = el')
 
-  let remove s el =
-    if lookup s el then begin
+  let remove el s =
+    if lookup el s then begin
       let (a, r) = !s in
       let in_a = ISet.filter (fun (_, el') -> el = el') a
       in

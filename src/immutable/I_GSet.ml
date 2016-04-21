@@ -10,9 +10,9 @@ module Make (O : Comparable) = struct
 
   let value = ISet.elements
 
-  let add s el = ISet.add el s
+  let add = ISet.add
 
-  let lookup s el = ISet.mem el s
+  let lookup = ISet.mem
 
   let merge = ISet.union
 end

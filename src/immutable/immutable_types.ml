@@ -67,14 +67,14 @@ module type GSet = sig
   (** Type of the contents of [GSet] *)
   type elt
 
-  (** [add t el] adds [el] to [t]. *)
-  val add : t -> elt -> t
+  (** [add el t] adds [el] to [t]. *)
+  val add : elt -> t -> t
 
   (** [value t] gets the raw state of [t]. *)
   val value : t -> elt list
 
-  (** [lookup t el] returns true if [el] is in [t]. *)
-  val lookup : t -> elt -> bool
+  (** [lookup el t] returns true if [el] is in [t]. *)
+  val lookup : elt -> t -> bool
 end
 
 
@@ -82,7 +82,7 @@ end
 module type RSet = sig
   include GSet
 
-  (** [remove t el] removes [el] from [t] only if [el] is in [t].
+  (** [remove el t] removes [el] from [t] only if [el] is in [t].
       Returns [t] otherwise. *)
-  val remove : t -> elt -> t
+  val remove : elt -> t -> t
 end

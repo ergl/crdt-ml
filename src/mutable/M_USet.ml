@@ -12,16 +12,16 @@ module Make (O : Comparable) = struct
     let (a, r) = !s in
     ISet.elements @@ ISet.diff a r
 
-  let add s el =
+  let add el s =
     let (a, r) = !s in
     s := (ISet.add el a, r)
 
-  let lookup s el =
+  let lookup el s =
     let (a, r) = !s in
     ISet.mem el @@ ISet.diff a r
 
-  let remove s el =
-    if lookup s el then begin
+  let remove el s =
+    if lookup el s then begin
       let (a, r) = !s in
       s := (a, ISet.add el r)
     end
