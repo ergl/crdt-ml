@@ -62,6 +62,12 @@ To link it, compile your files using `ocamlbuild`:
 ocamlbuild -use-ocamlfind -pkgs crdt <your-file>
 ```
 
+Run the tests:
+
+```
+make test
+```
+
 You can also choose to use a certain part of the library. Just link or load the
 submodule you want:
 
