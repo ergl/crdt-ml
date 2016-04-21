@@ -1,6 +1,13 @@
 # OASIS_START
-# DO NOT EDIT (digest: eb50cc79c9118bd3545c9d613a00be0e)
-src/util/IList
+# DO NOT EDIT (digest: 0b5106536fe7e55a0de2ee07a5735f75)
+src/Crdt
+src/immutable/I_IntVector
+src/immutable/I_GCounter
+src/immutable/I_PNCounter
+src/immutable/I_GSet
+src/immutable/I_ORSet
+src/immutable/I_USet
+src/immutable/Immutable_types
 src/mutable/M_GCounter
 src/mutable/M_GSet
 src/mutable/M_IntVector

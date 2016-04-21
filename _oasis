@@ -41,4 +41,4 @@ Document "crdtml_api"
     XOCamlbuildPath: .
     XOCamlbuildExtraArgs:
         "-docflags '-colorize-code -short-functors -charset utf-8'"
-    XOCamlbuildLibraries: crdt_util, crdt_mutable
+    XOCamlbuildLibraries: crdt, crdt_immutable, crdt_mutable

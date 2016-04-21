@@ -18,6 +18,5 @@
 
 (** Creates an add / remove set of elements satisfying
     {!modtype:Mutable_types.Comparable}*)
-
 module Make (O : Mutable_types.Comparable) : Mutable_types.RSet with
   type elt = O.t

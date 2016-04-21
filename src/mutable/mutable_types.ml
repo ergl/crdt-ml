@@ -26,8 +26,8 @@ module type Mergeable = sig
 end
 
 
-(** Vector Clock and increment-only counter types. Supports merging and incrementing.
-    The [elt] type must be supplied when including. *)
+(** Vector Clock and increment-only counter types. Supports merging and
+    incrementing. The [elt] type must be supplied when including. *)
 module type IVector = sig
   include Mergeable
 
@@ -48,7 +48,8 @@ module type IVector = sig
 end
 
 
-(** Increment / decrement counter type. Supports merging, incrementing and decrementing.
+(** Increment / decrement counter type. Supports merging, incrementing and
+    decrementing.
 
     The [elt] type (included from [IVector] must be supplied when including). *)
 module type DCounter = sig
