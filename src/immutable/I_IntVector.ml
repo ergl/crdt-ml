@@ -1,9 +1,15 @@
+(*$inject
+  let small = I_IntVector.query
+  let gen : I_IntVector.t QCheck.Gen.t = fun r -> I_IntVector.make ()
+  let ivt : I_IntVector.t QCheck.arbitrary = QCheck.make ~small gen
+*)
+
 type id = int
 type elt = int list
 type t = (id * elt)
 
 (*$QR make_in_range
-  (Q.int_range 1 10000) (fun i ->
+  Q.(int_range 1 10000) (fun i ->
     let size = make_in_range i |> query |> List.length
     in
     size > 0 && size <= i
@@ -24,27 +30,20 @@ let make () = make_in_range 11
 let query = snd
 
 (*$QR incr
-  (* Updates monotonically advance upwards
-     TODO: Create an I_IntVector generator *)
-  Q.unit (fun () ->
-    let a = make () in
-    query a <= query @@ incr a
+  (* Updates monotonically advance upwards *)
+  ivt (fun a ->
+    query a <= query (incr a)
   )
 *)
 let incr (id, payload) =
   (id, IList.incr_nth payload id)
 
 (*$QR merge
-  (* IntVector.merge is commutative, idempotent and associative
-     TODO: Create an I_IntVector generator *)
-  Q.unit (fun () ->
-    let a = make () and
-        b = make () and
-        c = make ()
-    in
-    ((merge a b |> query) = (merge b a |> query)) &&
-    ((merge a a |> query) = (query a)) &&
-    ((merge a (merge b c) |> query) = (merge (merge a b) c |> query)))
+  (* IntVector.merge is commutative, idempotent and associative *)
+  Q.(triple ivt ivt ivt) (fun (a, b, c) ->
+    (merge a b |> query) = (merge b a |> query) &&
+    (merge a a |> query) = (query a) &&
+    (merge a (merge b c) |> query) = (merge (merge a b) c |> query))
 *)
 let merge (id, payload) (_, payload') =
   (id, IList.fill_map2 max payload payload')

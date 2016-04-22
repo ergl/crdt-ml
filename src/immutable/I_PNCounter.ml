@@ -1,3 +1,9 @@
+(*$inject
+  let small = I_PNCounter.query
+  let gen : I_PNCounter.t QCheck.Gen.t = fun r -> I_PNCounter.make ()
+  let pnctr : I_PNCounter.t QCheck.arbitrary = QCheck.make ~small gen
+*)
+
 type elt = int
 type payload = (int list * int list)
 type t = (elt * payload)
@@ -15,46 +21,36 @@ let query (_, (a, r)) =
 
 (*$QR incr; decr
   (* Combinations of incr and decr form a noop *)
-  Q.unit (fun () ->
-    let a = make () in
+  pnctr (fun a ->
     (decr a |> incr |> query) = (incr a |> decr |> query) &&
     (incr a |> decr |> query) = query a
   )
 *)
 
 (*$QR incr
-  (* Increments monotonically advance upwards
-     TODO: Create an I_PNCounter generator *)
-  Q.unit (fun () ->
-    let a = make () in
-    query a <= query @@ incr a
+  (* Increments monotonically advance upwards *)
+  pnctr (fun a ->
+    query a <= query (incr a)
   )
 *)
 let incr (id, (a, r)) =
   (id, (IList.incr_nth a id, r))
 
 (*$QR decr
-  (* Decrements monotonically advance downwards
-     TODO: Create an I_PNCounter generator *)
-  Q.unit (fun () ->
-    let a = make () in
-    query a >= query @@ decr a
+  (* Decrements monotonically advance downwards *)
+  pnctr (fun a ->
+    query a >= query (decr a)
   )
 *)
 let decr (id, (a, r)) =
   (id, (a, IList.incr_nth r id))
 
 (*$QR merge
-  (* PNCounter.merge is commutative, idempotent and associative
-     TODO: Create an I_PNCounter generator *)
-  Q.unit (fun () ->
-    let a = make () and
-        b = make () and
-        c = make ()
-    in
-    ((merge a b |> query) = (merge b a |> query)) &&
-    ((merge a a |> query) = (query a)) &&
-    ((merge a (merge b c) |> query) = (merge (merge a b) c |> query)))
+  (* PNCounter.merge is commutative, idempotent and associative *)
+  Q.(triple pnctr pnctr pnctr) (fun (a, b, c) ->
+    (merge a b |> query) = (merge b a |> query) &&
+    (merge a a |> query) = (query a) &&
+    (merge a (merge b c) |> query) = (merge (merge a b) c |> query))
 *)
 let merge (id, (a, r)) (_, (a', r')) =
   let max' a b = IList.fill_map2 max a b in
