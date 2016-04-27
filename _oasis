@@ -22,7 +22,7 @@ Library "crdt_mutable"
 
 Library "crdt_immutable"
     Path: src/immutable
-    Modules: I_IntVector, I_GCounter, I_PNCounter,
+    Modules: I_2P2PGraph, I_IntVector, I_GCounter, I_PNCounter,
              I_GSet, I_ORSet, I_USet, Immutable_types
     BuildDepends: crdt_util
 

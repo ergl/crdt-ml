@@ -89,3 +89,36 @@ module type RSet = sig
       Returns [t] otherwise. *)
   val remove : elt -> t -> t
 end
+
+
+(** Simple Graph CRDT. Supports merging, lookup, and adding and removing
+    vertices and edges. *)
+module type Graph = sig
+  include Mergeable
+
+  (** Type of the vertices in [Graph] *)
+  type vertex
+
+  (** Type of the edges in [Graph] *)
+  type edge = vertex * vertex
+
+  (** [lookup_v v t] returns true if [v] is in [t] *)
+  val lookup_v : vertex -> t -> bool
+
+  (** [lookup_e e t] returns true if [e] is in [t] *)
+  val lookup_e : edge -> t -> bool
+
+  (** [add_vertex v t] adds [v] to [t] *)
+  val add_vertex : vertex -> t -> t
+
+  (** [add_edge e t] adds [e] to [t] iff [(v1, v2)] in [e] are in [t].
+      Otherwise returns [t]. *)
+  val add_edge : edge -> t -> t
+
+  (** [remove_vertex v t] removes [v] from [t] iff [v] is not part of any
+      edge [e] in [t] *)
+  val remove_vertex : vertex -> t -> t
+
+  (** [remove_edge e t] removes [e] from [t] *)
+  val remove_edge : edge -> t -> t
+end

@@ -1,6 +1,7 @@
 # OASIS_START
-# DO NOT EDIT (digest: 0b5106536fe7e55a0de2ee07a5735f75)
+# DO NOT EDIT (digest: 7c96c7e3eea4327e50017850868289a7)
 src/Crdt
+src/immutable/I_2P2PGraph
 src/immutable/I_IntVector
 src/immutable/I_GCounter
 src/immutable/I_PNCounter
