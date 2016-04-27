@@ -35,7 +35,7 @@ module Make (O : Comparable) = struct (*$< StrGSet *)
   (*$QR lookup
       (* Lookup of s in add s always returns true *)
       Q.(pair string gset) (fun (s, a) ->
-        lookup s (add s a) = false
+        lookup s (add s a) = true
       )
   *)
   let lookup = ISet.mem

@@ -1,7 +1,6 @@
 (*$inject
-  let small = I_IntVector.query
   let gen : I_IntVector.t QCheck.Gen.t = fun r -> I_IntVector.make ()
-  let ivt : I_IntVector.t QCheck.arbitrary = QCheck.make ~small gen
+  let ivt : I_IntVector.t QCheck.arbitrary = QCheck.make gen
 *)
 
 type id = int
