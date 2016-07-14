@@ -1,4 +1,4 @@
-# CRDT - OCaml style
+# CRDTs - Conflict-Free Replicated Data Types for OCaml
 
 A CRDT (or Conflict-Free Replicated Data Type) is a data type designed to
 satisfy the Strong Eventual Consistency model.
@@ -41,9 +41,15 @@ purposes. Don't use them for any serious work.
 Use an `ORSet` if you want to be able to add removed elements again. Read the
 reasoning in the [documentation](http://ergl.github.io/crdt-ml/M_USet.html).
 
-## Building and Installing
+## Installing
 
-To build and install the library:
+Using [`opam`](https://opam.ocaml.org):
+
+```
+opam install crdt-ml
+```
+
+Or you can install from source:
 
 ```
 make && make install
@@ -68,10 +74,9 @@ Run the tests:
 make test
 ```
 
-The tests depend on [iTeML](https://github.com/vincent-hugot/iTeML).
-If you use [`opam`](https://opam.ocaml.org), you can install it with `opam install qtest`.
+The tests depend on [iTeML](https://github.com/vincent-hugot/iTeML). You can install it with `opam install qtest`.
 
-You can also choose to use a certain part of the library. Just link or load the
+You can also choose to use just a certain part of the library. To do so, link or load the
 submodule you want:
 
 - `crdt_mutable` - Mutable implementations.

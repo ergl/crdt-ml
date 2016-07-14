@@ -2,6 +2,7 @@ oasis_clean.sh
 qtest.targets.log
 !test/.gitkeep
 test/
+crdt-ml.*
 
 ### OCaml ###
 *.annot
