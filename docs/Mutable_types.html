@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="M_USet.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Crdt" rel="Chapter" href="Crdt.html">
+<link title="I_IntVector" rel="Chapter" href="I_IntVector.html">
+<link title="I_GCounter" rel="Chapter" href="I_GCounter.html">
+<link title="I_PNCounter" rel="Chapter" href="I_PNCounter.html">
+<link title="I_GSet" rel="Chapter" href="I_GSet.html">
+<link title="I_ORSet" rel="Chapter" href="I_ORSet.html">
+<link title="I_USet" rel="Chapter" href="I_USet.html">
+<link title="Immutable_types" rel="Chapter" href="Immutable_types.html">
+<link title="M_GCounter" rel="Chapter" href="M_GCounter.html">
+<link title="M_GSet" rel="Chapter" href="M_GSet.html">
+<link title="M_IntVector" rel="Chapter" href="M_IntVector.html">
+<link title="M_ORSet" rel="Chapter" href="M_ORSet.html">
+<link title="M_PNCounter" rel="Chapter" href="M_PNCounter.html">
+<link title="M_USet" rel="Chapter" href="M_USet.html">
+<link title="Mutable_types" rel="Chapter" href="Mutable_types.html"><title>Mutable_types</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="M_USet.html" title="M_USet">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Mutable_types.html">Mutable_types</a></h1>
+
+<pre><span class="keyword">module</span> Mutable_types: <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+This module contains all mutable CRDT types, as well as some type
+    properties that CRDT state must satisfy.<br>
+</div>
+<hr width="100%">
+
+<pre><span class="keyword">module type</span> <a href="Mutable_types.Comparable.html">Comparable</a> = <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.Comparable.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Comparable types.
+</div>
+
+<pre><span class="keyword">module type</span> <a href="Mutable_types.Mergeable.html">Mergeable</a> = <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.Mergeable.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Mergeable types.
+</div>
+
+<pre><span class="keyword">module type</span> <a href="Mutable_types.IVector.html">IVector</a> = <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.IVector.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Vector Clock and increment-only counter types.
+</div>
+
+<pre><span class="keyword">module type</span> <a href="Mutable_types.DCounter.html">DCounter</a> = <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.DCounter.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Increment / decrement counter type.
+</div>
+
+<pre><span class="keyword">module type</span> <a href="Mutable_types.GSet.html">GSet</a> = <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.GSet.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Grow-Only set type.
+</div>
+
+<pre><span class="keyword">module type</span> <a href="Mutable_types.RSet.html">RSet</a> = <code class="code"><span class="keyword">sig</span></code> <a href="Mutable_types.RSet.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Add and remove set type.
+</div>
+</body></html>
